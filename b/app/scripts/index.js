@@ -5,5 +5,7 @@ require('./router');
 //DOM ready
 
 $(function(){
+
 Backbone.history.start();
+
 });
