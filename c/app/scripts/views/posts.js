@@ -3,7 +3,7 @@ var $ = require('jquery');
 
 //templates
 var postTitleTemplate = require('../../templates/posttitletemplate.hbs');
-
+var bodyTitleTemplate = require('../../templates/bodytitletemplate.hbs');
 //views
 
 var PostTitleView = Backbone.View.extend({
@@ -13,30 +13,31 @@ var PostTitleView = Backbone.View.extend({
   initialize: function(){
     this.listenTo(this.collection, 'add', this.render);
   },
-  // events: {
-  //   'ready': 'appendTitles'
-  // },
-  // appendTitles: function(e){
-  //   e.preventDefault();
-  //   console.log("appending titles");
-  //   var postTitles = {
-  //     title: $('.titles').html
-  //   }
-  //
-  //   this.collection.create({postTitles});
-  //
-  // },
   render: function(person){
     person = person.toJSON();
     if(person.title){
       this.$el.append(this.template(person));
     }
-
     return this;
   }
 });
 
+var PostBodyView = Backbone.View.extend({
+  tagName: 'div',
+  className: 'well',
+  template: bodyTitleTemplate,
+  initialize: function(){
+      this.listenTo(this.model, 'changed', this.render);
+    },
+    render: function(){
+      this.$el.html(this.template(this.model.toJSON()));
+
+      return this;
+    }
+});
+
 
 module.exports = {
-  PostTitleView: PostTitleView
+  PostTitleView: PostTitleView,
+  PostBodyView: PostBodyView
 }
