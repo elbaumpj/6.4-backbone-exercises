@@ -10,16 +10,9 @@ var AppRouter = Backbone.Router.extend({
   },
   initialize: function(){
     this.collection = new models.PostCollection();
-
-    // $('li').on('click', function(){
-    //   var selectedTitle = $(this);
-    //   $('#body-section').append(this.body)
-    //   console.log(selectedTitle);
-    // });
   },
   index: function() {
     var titleView = new views.PostTitleView({collection: this.collection});
-    // var bodyView = new views.PostBodyView({collection: this.collection});
     this.collection.fetch();
     $('#title-list').html(titleView.el);
 
@@ -36,7 +29,7 @@ var AppRouter = Backbone.Router.extend({
         });
         return;
     }
-  $('#body-section').html(bodyView.render().el);
+  $('#body-section').html(bodyView.el);
   }
 });
 
