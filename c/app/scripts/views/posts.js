@@ -10,6 +10,9 @@ var PostTitleView = Backbone.View.extend({
   tagName: 'ul',
   className: 'well',
   template: postTitleTemplate,
+  initialize: function(){
+    this.listenTo(this.collection, 'add', this.render);
+  },
   // events: {
   //   'ready': 'appendTitles'
   // },
@@ -23,8 +26,11 @@ var PostTitleView = Backbone.View.extend({
   //   this.collection.create({postTitles});
   //
   // },
-  render: function(){
-    this.$el.html(this.template());
+  render: function(person){
+    person = person.toJSON();
+    if(person.title){
+      this.$el.append(this.template(person));
+    }
 
     return this;
   }

@@ -9,14 +9,14 @@ var AppRouter = Backbone.Router.extend({
   },
   initialize: function(){
     this.collection = new models.PostCollection();
-    this.collection.fetch();
+    // this.collection.fetch();
 
   },
   index: function() {
     var titleView = new views.PostTitleView({collection: this.collection});
     // var bodyView = new views.PostBodyView({collection: this.collection});
-
-    $('#title-list').html(titleView.render().el);
+    this.collection.fetch()
+    $('#title-list').html(titleView.el);
   }
 });
 
