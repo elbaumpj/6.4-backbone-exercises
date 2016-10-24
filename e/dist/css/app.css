@@ -5814,4 +5814,16 @@ button.close {
 img {
   max-width: 100%; }
 
+#post-body {
+  height: 200px; }
+
+#post-title {
+  margin-top: 50px; }
+
+label {
+  margin-top: 50px; }
+
+li {
+  list-style: none; }
+
 /*# sourceMappingURL=app.css.map */

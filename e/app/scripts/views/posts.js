@@ -4,6 +4,7 @@ var Backbone = require('backbone');
 // templates
 var addFormTemplate = require('../../templates/addformtemplate.hbs');
 var addTitlesTemplate = require('../../templates/addtitlestemplate.hbs');
+var bodyDisplayTemplate = require('../../templates/bodydisplaytemplate.hbs');
 //views
 
 var AddPostForm = Backbone.View.extend({
@@ -38,11 +39,36 @@ var AddPostForm = Backbone.View.extend({
 var AddTitleView = Backbone.View.extend({
   tagName: 'ul',
   template: addTitlesTemplate,
-  render: function() {
-    this.$el.append(this.template());
-
+  events: {
+    'click .delete-button': 'delete'
+  },
+  initialize: function(){
+    this.listenTo(this.collection, 'add', this.render);
+  },
+  render: function(person){
+    person = person.toJSON();
+    if(person.title){
+      this.$el.append(this.template(person));
+    }
     return this;
+  },
+  delete: function() {
+    this.destroy();
   }
+});
+
+var PostBodyView = Backbone.View.extend({
+  tagName: 'div',
+  className: 'well',
+  template: bodyDisplayTemplate,
+  initialize: function(){
+      this.listenTo(this.model, 'changed', this.render);
+    },
+    render: function(){
+      this.$el.html(this.template(this.model.toJSON()));
+
+      return this;
+    }
 });
 
 
@@ -53,5 +79,6 @@ var AddTitleView = Backbone.View.extend({
 
 module.exports = {
   AddPostForm: AddPostForm,
-  AddTitleView: AddTitleView
+  AddTitleView: AddTitleView,
+  PostBodyView: PostBodyView
 }
