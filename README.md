@@ -1,2 +1,2 @@
-#6.4-backbone-exercises
+#backbone-exercises
 * This project's objective was to be comfortable with the process of finishing a Backbone app from scratch. The apps were: a form that saves to a server, an address entry that saves to a server, a blog reading app, a URL bookmarking app, and a custom CMS from scratch. These apps were great for reinforcing Backbone concepts and really got me comfortable working with Backbone. There's a link in the repo description to the live apps, and you can also clone the repo if you'd like to get it working locally.
